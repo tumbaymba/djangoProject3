@@ -1,17 +1,25 @@
 from django.shortcuts import render
+from catalog.models import Product
 
 
 # Create your views here.
 def home(request):
-    if request.method == 'GET':
-        return render(request, 'catalog/templates/home.html')
+    product_list = Product.objects.all()
+    context = {'object_list': product_list, 'title': 'Перечень товаров'}
+
+    return render(request, 'catalog/templates/home.html', context)
 
 
 def contact(request):
     if request.method == 'POST':
-        visiter = dict()
-        visiter['name'] = request.POST.get('name', None)
-        visiter['phone'] = request.POST.get('phone', None)
-        visiter['message'] = request.POST.get('message', None)
-        print(visiter)
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        print(f'{name} ({email}, {phone}): {message}')
     return render(request, 'catalog/templates/contact.html')
+
+
+def products(request, pk):
+    context = {'object_list': Product.objects.filter(pk=pk), 'title': 'Описание товара'}
+    return render(request, 'catalog/templates/products.html', context)
