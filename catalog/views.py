@@ -10,14 +10,14 @@ def home(request):
     return render(request, 'catalog/templates/home.html', context)
 
 
-def contact(request):
+def contacts(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         message = request.POST.get('message')
         print(f'{name} ({email}, {phone}): {message}')
-    return render(request, 'catalog/templates/contact.html')
+    return render(request, 'catalog/templates/contacts.html')
 
 
 def products(request, pk):
