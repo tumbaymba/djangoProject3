@@ -1,23 +1,34 @@
 from django.core.management import BaseCommand
-
-from catalog.models import Category
+import json
+from catalog.models import Category, Product
+from django.db import connection
 
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        category_list = [
-            {'category_name': 'овощи', 'description': 'огурцы, помидоры и пр.'},
-            {'category_name': 'фрукты', 'description': 'апельсины, яблоки и пр.'},
-            {'category_name': 'кондитерские изделия', 'description': 'торты, выпечка и пр.'},
-            {'category_name': 'зелень', 'description': 'укроп, петрушка и пр.'},
-        ]
-
-        category_for_create = []
-        for category_item in category_list:
-            category_for_create.append(
-                Category(**category_item)
-            )
+        with connection.cursor() as cursor:
+            cursor.execute(f'TRUNCATE TABLE catalog_category RESTART IDENTITY CASCADE')
 
         Category.objects.all().delete()
-        Category.objects.bulk_create(category_for_create)
+        Product.objects.all().delete()
+
+        with open('data.json') as json_file:
+            data = json.load(json_file)
+
+            product_for_create = []
+            category_for_create = []
+
+            for category in data:
+                if category['model'] == 'catalog_category':
+                    category_for_create.append(Category(category_name=category['fields']['category_name'],
+                                                        category_description=category['fields'][
+                                                            'category_description']))
+            Category.objects.bulk_create(category_for_create)
+            for product in data:
+                if product['model'] == 'product_for_create':
+                    product_for_create.append(Product(product_name=product['fields']['product_name'],
+                                                      description=product['fields']['description'],
+                                                      category=Category.objects.get(pk=product['fields']['category']),
+                                                      price=product['fields']['price']))
+            Product.objects.bulk_create(product_for_create)

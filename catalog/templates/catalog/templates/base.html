@@ -89,9 +89,15 @@
                     <div class="card-body">
                         <form method="post">
                             {% csrf_token %}
-                            <input name="name" class="form-control mb-2" placeholder="Name" type="text">
-                            <input name="email" class="form-control mb-2" placeholder="Email" type="email">
-                            <textarea name="message" class="form-control mb-2" placeholder="Your message"></textarea>
+                            <label>
+                                <input name="name" class="form-control mb-2" placeholder="Name" type="text">
+                            </label>
+                            <label>
+                                <input name="email" class="form-control mb-2" placeholder="Email" type="email">
+                            </label>
+                            <label>
+                                <textarea name="message" class="form-control mb-2" placeholder="Your message"></textarea>
+                            </label>
                             <input class="btn btn-primary w-100" type="submit" value="Send" />
                         </form>
                     </div>
@@ -124,11 +130,9 @@
         <div class="container">
           {% block content %}
           {% endblock %}
+      </div>
+      </div>
 
-        </div>
-
-
-    </main>
 
     <footer class="text-muted">
       <div class="container">
