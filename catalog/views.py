@@ -11,8 +11,8 @@ def index(request):
 
 
 def categories(request):
-    product_name = Product.objects.all()
-    context = {'product_list': product_name, 'title': 'Все продукты'}
+
+    context = {'object_list': Category.objects.all(), 'title': 'Все продукты'}
 
     return render(request, 'catalog/templates/categories.html', context)
 
@@ -28,5 +28,6 @@ def contacts(request):
 
 
 def products(request, pk):
-    context = {'object_list': Product.objects.filter(pk=pk), 'title': 'Описание товара'}
+    category_item = Category.objects.get(pk=pk)
+    context = {'object_list': Category.objects.filter(pk=pk), 'title': f'Описание товара {category_item.name}'}
     return render(request, 'catalog/templates/products.html', context)

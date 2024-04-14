@@ -24,7 +24,7 @@ from catalog.views import index, categories
 
 urlpatterns = [
 
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', include('catalog.urls', namespace='catalog')),
-    path('categories/', index, name='categories'),
+    path('categories/', categories, name='categories'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

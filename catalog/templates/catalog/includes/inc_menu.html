@@ -1,22 +1,21 @@
-<header>
-      <div class= "bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 py-4">
-              <h4 class="text-white">Меню</h4>
+<div class="col">
+    <div class="card shadow-sm">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+             role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <title>Скоро здесь появится изображение</title>
+            <rect width="100%" height="100%" fill="#55595c"/>
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Скоро здесь появится изображение</text>
+        </svg>
+        <img src="/catalog/media/pic.png" class="card-img-top">
+        <div class="card-body">
+            <p class="card-text">{{ object.category_name }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <a href={% url 'catalog:categories' %} type="button" class="btn btn-sm btn-outline-secondary">К продуктам</a>
+
+                </div>
+
             </div>
-          </div>
         </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-            <strong>Меню</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="true" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
-    </header>
+    </div>
+</div>
