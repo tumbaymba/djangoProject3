@@ -1,5 +1,5 @@
 {% extends 'catalog/templates/base_1.html' %}
-
+{% load static %}
 
 {% block content %}
     {% for object in object_list %}
@@ -10,7 +10,7 @@
              src="{{ object.image|media }}"
              alt="Card-image cap">
         <div class="card-body">
-            <h2 class="card-text">{{ object }}</h2>
+            <h2 class="card-text">{{ object.name }}</h2>
             <div class="d-flex justify-content-between align-items-center">
             </div>
         </div>

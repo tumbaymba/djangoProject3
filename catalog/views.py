@@ -28,6 +28,6 @@ def contacts(request):
 
 
 def products(request, pk):
-    category_item = Category.objects.get(pk=pk)
-    context = {'object_list': Category.objects.filter(pk=pk), 'title': f'Описание товара {category_item.name}'}
+    product_category = Category.objects.get(pk=pk)
+    context = {'object_list': Product.objects.filter(product_category_id=pk), 'title': f'Описание товара {product_category.name}'}
     return render(request, 'catalog/templates/products.html', context)

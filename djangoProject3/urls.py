@@ -20,11 +20,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
-from catalog.views import index, categories
+from catalog.views import index, categories, products
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', include('catalog.urls', namespace='catalog')),
+    path('blog/', include('blog.urls', namespace='blog')),
     path('categories/', categories, name='categories'),
+    path('products/', products, name='products'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

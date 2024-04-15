@@ -1,17 +1,14 @@
 <div class="col">
     <div class="card shadow-sm">
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-             role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Скоро здесь появится изображение</title>
-            <rect width="100%" height="100%" fill="#55595c"/>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Скоро здесь появится изображение</text>
-        </svg>
-        <img src="/catalog/media/pic.png" class="card-img-top">
+        <rect width="100%" height="100%" fill="#55595c"/>
+
+        <img src="/media/catalog/pic.png" class="card-img-top">
         <div class="card-body">
             <p class="card-text">{{ object.category_name }}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <a href={% url 'catalog:categories' %} type="button" class="btn btn-sm btn-outline-secondary">К продуктам</a>
+                    <a href={% url 'catalog:categories' %} type="button" class="btn btn-sm btn-outline-secondary">К
+                        продуктам</a>
 
                 </div>
 
