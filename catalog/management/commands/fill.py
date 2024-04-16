@@ -13,7 +13,7 @@ class Command(BaseCommand):
         Category.objects.all().delete()
         Product.objects.all().delete()
 
-        with open('data.json') as json_file:
+        with open('data_1.json') as json_file:
             data = json.load(json_file)
 
             product_for_create = []
