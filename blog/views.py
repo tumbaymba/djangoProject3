@@ -23,7 +23,7 @@ class BlogpostListView(ListView):
 class BlogpostUpdateView(UpdateView):
     model = Blogpost
     fields = ('title', 'content', 'publication', 'preview')
-    success_url = reverse_lazy('blog:blog_list')
+    get_success_url = reverse_lazy('blog:blog_list')
 
     def form_valid(self, form):
         if form.is_valid():

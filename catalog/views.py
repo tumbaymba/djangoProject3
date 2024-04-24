@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from django.views import View
+from django.views.generic import ListView
 from catalog.models import Product, Category
 
 
 # Create your views here.
+
 def index(request):
     category_name = Category.objects.all()
     context = {'object_list': category_name, 'title': 'Перечень продуктов - Главная'}
@@ -10,13 +13,14 @@ def index(request):
     return render(request, 'catalog/templates/index.html', context)
 
 
-def categories(request):
-
-    context = {'object_list': Category.objects.all(), 'title': 'Все продукты'}
-
-    return render(request, 'catalog/templates/categories.html', context)
+class CategoriesListView(ListView):
+    model = Category
 
 
+# def categories(request):
+# context = {'object_list': Category.objects.all(), 'title': 'Все продукты'}
+
+# return render(request, 'catalog/templates/categories.html', context)
 def contacts(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -27,7 +31,6 @@ def contacts(request):
     return render(request, 'catalog/templates/contacts.html')
 
 
-def products(request, pk):
-    product_category = Category.objects.get(pk=pk)
-    context = {'object_list': Product.objects.filter(product_category_id=pk), 'title': f'Описание товара {product_category.name}'}
-    return render(request, 'catalog/templates/products.html', context)
+class ProductListView(ListView):
+    model = Product
+    template_name = 'catalog/templates/product_list.html'
