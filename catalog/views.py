@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
-from catalog.models import Product, Category
+from catalog.models import Product, Category, Contacts
 
 
 # Create your views here.
@@ -21,14 +21,23 @@ class CategoriesListView(ListView):
 # context = {'object_list': Category.objects.all(), 'title': 'Все продукты'}
 
 # return render(request, 'catalog/templates/categories.html', context)
-def contacts(request):
+'''def contacts(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         message = request.POST.get('message')
         print(f'{name} ({email}, {phone}): {message}')
-    return render(request, 'catalog/templates/contacts.html')
+    return render(request, 'catalog/templates/contacts.html')'''
+
+
+class ContactsView(ListView):
+    model = Contacts
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Контакты'
+        return context
 
 
 class ProductListView(ListView):
