@@ -28,4 +28,5 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace='blog')),
     path('categories/', CategoriesListView.as_view, name='categories'),
     path('products/', ProductListView.as_view, name='products'),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

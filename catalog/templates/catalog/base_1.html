@@ -189,9 +189,9 @@
                     <h4>Меню</h4>
                     <ul class="list-unstyled">
                         <li><a href="{% url 'catalog:categories' %}" class="text-black-50">Категории продуктов</a></li>
-                        <li><a href="{% url 'catalog:index' %}" class="text-black-50">На главную</a></li>
+                        <li><a href="{% url 'catalog:products' %}" class="text-black-50">На главную</a></li>
                         <li><a href="{% url 'blog:blog_list' %}" class="text-black-50">Перейти в блог</a></li>
-
+                        <li><a href="{% url 'catalog:contacts' %}" class="text-black-50">Контакты</a></li>
                     </ul>
                 </div>
             </div>
@@ -244,7 +244,7 @@
             <a href="#">Back to top</a>
         </p>
         <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
+        <p class="mb-0">New to Bootstrap? <a href="/catalog/static">Visit the homepage</a> or read our <a
                 href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>
     </div>
 </footer>

@@ -7,8 +7,7 @@
             <p class="card-text">{{ object.category_name }}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <a href={% url 'catalog:categories' %} type="button" class="btn btn-sm btn-outline-secondary">
-                        Описание</a>
+                     <a href="{% url 'catalog:category_detail' object.pk %}" class="w-20 btn btn-lg btn-outline-primary">О категории</a>
                     <a href={% url 'blog:blog_list' %} type="button" class="btn btn-sm btn-outline-secondary">
                         Блог</a>
 
