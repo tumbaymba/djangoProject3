@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from catalog.models import Product, Category, Contacts
 
 
@@ -10,7 +10,11 @@ def index(request):
     category_name = Category.objects.all()
     context = {'object_list': category_name, 'title': 'Перечень продуктов - Главная'}
 
-    return render(request, 'catalog/templates/index.html', context)
+    return render(request, 'catalog/category_list.html', context)
+
+
+class CategoryDetailView(DetailView):
+    model = Category
 
 
 class CategoriesListView(ListView):
@@ -28,7 +32,7 @@ class CategoriesListView(ListView):
         phone = request.POST.get('phone')
         message = request.POST.get('message')
         print(f'{name} ({email}, {phone}): {message}')
-    return render(request, 'catalog/templates/contacts.html')'''
+    return render(request, 'catalog/templates/contacts_list.html')'''
 
 
 class ContactsView(ListView):
@@ -39,7 +43,17 @@ class ContactsView(ListView):
         context['title'] = 'Контакты'
         return context
 
+    def post(self, request, *args, **kwargs):
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        print(f'Name: {name}, Phone: {phone}, Message: {message}')
+        return super().get(request, *args, **kwargs)
 
 class ProductListView(ListView):
     model = Product
     template_name = 'catalog/templates/product_list.html'
+
+
+class ProductDetailView(DetailView):
+    model = Product

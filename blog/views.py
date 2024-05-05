@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from pytils.translit import slugify
 from blog.models import Blogpost
@@ -11,8 +11,8 @@ class BlogpostCreateView(CreateView):
 
     def form_valid(self, form):
         if form.is_valid():
-            new_mat = form.save()
-            new_mat.slug = slugify(new_mat.title)
+            new_blog = form.save()
+            new_blog.slug = slugify(new_blog.title)
         return super().form_valid(form)
 
 
@@ -27,9 +27,9 @@ class BlogpostUpdateView(UpdateView):
 
     def form_valid(self, form):
         if form.is_valid():
-            new_mat = form.save()
-            new_mat.slug = slugify(new_mat.title)
-            new_mat.save()
+            new_blog = form.save()
+            new_blog.slug = slugify(new_blog.title)
+            new_blog.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
