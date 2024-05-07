@@ -13,6 +13,7 @@
                 <h4 class="my-0 fw-normal">Редактирование блога</h4>
             </div>
             <div class="card-body">
+                <a href="http://127.0.0.1:8000/blog/create/">create</a>
                 <form method="post" action="" class="form-floating" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
