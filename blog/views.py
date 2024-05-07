@@ -16,8 +16,16 @@ class BlogpostCreateView(CreateView):
         return super().form_valid(form)
 
 
+    def get_success_url(self):
+        #TODO
+        return reverse_lazy('blog:blog_list')
+
+
 class BlogpostListView(ListView):
     model = Blogpost
+
+    def get_queryset(self):
+        return Blogpost.objects.filter(publication=True)
 
 
 class BlogpostUpdateView(UpdateView):
