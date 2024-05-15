@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
-from catalog.views import index, CategoriesListView, ProductListView
+from catalog.views_2 import index, CategoriesListView, ProductListView
 
 urlpatterns = [
 

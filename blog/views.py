@@ -25,6 +25,9 @@ class BlogpostUpdateView(UpdateView):
     fields = ('title', 'content', 'publication', 'preview')
     success_url = reverse_lazy('blog:blog_list')
 
+    def get_success_url(self):
+        return reverse_lazy('blog:view', kwargs={'pk': self.object.pk})
+
     def form_valid(self, form):
         if form.is_valid():
             new_blog = form.save()
@@ -40,7 +43,7 @@ class BlogpostUpdateView(UpdateView):
 
 class BlogpostDetailView(DetailView):
     model = Blogpost
-    success_url = reverse_lazy('blog:blog_list')
+    success_url = reverse_lazy('blog:blogpost_detail')
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)

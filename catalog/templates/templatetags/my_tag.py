@@ -1,11 +1,10 @@
 from django import template
 
-
 register = template.Library()
 
 
 @register.filter()
-def mymedia(data):
+def media_filter(data):
     if data:
         return f'/media/{data}'
-    return f'catalog/media/pic.jpg'
+    return f'/media/empty.png'

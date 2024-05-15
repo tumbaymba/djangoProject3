@@ -35,7 +35,7 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
                            'радар']
         for words in forbidden_words:
             if words in cleaned_data:
-                raise forms.ValidationError('Вы ввели запрещенное слово в описание товара')
+                raise forms.ValidationError('Вы ввели запрещенное слово')
             return cleaned_data
 
 
