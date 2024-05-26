@@ -181,9 +181,7 @@
             <div class="row">
                 <div class="col-sm-8 col-md-7 py-4">
                     <h4>About</h4>
-                    <p class="text-body-secondary">Add some information about the album below, the author, or any other
-                        background context. Make it a few sentences long so folks can pick up some informative tidbits.
-                        Then, link them off to some social networking sites or contact information.</p>
+
                 </div>
                 <div class="col-sm-4 offset-md-1 py-4">
                     <h4>Меню</h4>
@@ -192,7 +190,11 @@
                         <li><a href="{% url 'catalog:products' %}" class="text-black-50">На главную</a></li>
                         <li><a href="{% url 'blog:blog_list' %}" class="text-black-50">Перейти в блог</a></li>
                         <li><a href="{% url 'catalog:contacts' %}" class="text-black-50">Контакты</a></li>
+                       <li><a href="{% url 'users:logout' %}" class="text-black-50">Выйти</a></li>
+                        <li><a href="{% url 'users:login' %}" class="text-black-50">Войти</a></li>
+                        <li><a href="{% url 'users:register' %}" class="text-black-50">Зарегестрироваться</a></li>
                         <li><a href="{% url 'blog:create' %}" class="text-black-50">Создать блог</a></li>
+
                     </ul>
                 </div>
             </div>
@@ -232,6 +234,8 @@
         <div class="container">
             {% block content %}
             {% endblock %}
+
+
 
 
         </div>
