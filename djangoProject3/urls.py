@@ -22,11 +22,11 @@ from django.conf import settings
 from catalog.views_2 import index, CategoriesListView, ProductListView
 
 urlpatterns = [
+                path('admin/', admin.site.urls),
+                path('', include('catalog.urls', namespace='catalog')),
+                path('blog/', include('blog.urls', namespace='blog')),
+                path('users/', include('users.urls', namespace='users')),
+                path('categories/', CategoriesListView.as_view, name='categories'),
+                path('products/', ProductListView.as_view, name='products'),
 
-    path('admin/', admin.site.urls),
-    path('', include('catalog.urls', namespace='catalog')),
-    path('blog/', include('blog.urls', namespace='blog')),
-    path('categories/', CategoriesListView.as_view, name='categories'),
-    path('products/', ProductListView.as_view, name='products'),
-    
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
