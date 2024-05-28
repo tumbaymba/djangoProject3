@@ -21,3 +21,5 @@ class Blogpost(models.Model):
     class Meta:
         verbose_name = ("Запись")
         verbose_name_plural = ("Записи")
+        ordering = ('title',)
+        permissions = [('can_change_publication_sign', 'Can change blog publication_sign',)]
