@@ -1,0 +1,13 @@
+{% extends 'catalog/base_1.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            {% include 'catalog/includes/inc_menu.html' %}
+        {{ object.category_name }}
+        {{ object.description }}
+    </div>
+
+
+{% endblock %}
