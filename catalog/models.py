@@ -1,6 +1,6 @@
 from django.db import models
 #from blog.models import NULLABLE
-
+from users.models import User
 
 # Create your models here.
 
@@ -25,7 +25,8 @@ class Product(models.Model):
     product_price = models.IntegerField(verbose_name='Цена')
     created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateField(auto_now=True, verbose_name='Дата последнего изменения')
-
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Создатель')
+    is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
     def __str__(self):
         return f'{self.product_name}, {self.description}, {self.product_price}'
 
@@ -33,7 +34,9 @@ class Product(models.Model):
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
         ordering = ('product_name',)
-
+        permissions = [('can_change_description', 'Can change product description',),
+                       ('can_change_category', 'Can change product category',),
+                       ('set_published_status', 'Can change product published status',)]
 
 class Contacts(models.Model):
     city = models.CharField(max_length=50, verbose_name="Страна")

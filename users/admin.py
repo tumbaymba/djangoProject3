@@ -7,4 +7,5 @@ from users.models import User
 
 @admin.register(User)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['is_active', 'is_staff', 'is_superuser', 'email']
+

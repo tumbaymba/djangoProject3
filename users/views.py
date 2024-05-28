@@ -2,8 +2,8 @@ import random
 import secrets
 
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy, reverse
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 
 from djangoProject3.settings import EMAIL_HOST_USER
@@ -13,16 +13,16 @@ from django.http import HttpResponseRedirect
 
 
 class RegisterMessageView(TemplateView):
-    template_name = 'register_message.html'
+    template_name = 'users/register_message.html'
 
 
 class PasswordRecoveryMessageView(TemplateView):
-    template_name = 'password_recovery_message.html'
+    template_name = 'users/password_recovery_message.html'
 
 
 class UserCreateView(CreateView):
     model = User
-    template_name = 'user_form.html'
+    template_name = 'users/user_form.html'
     form_class = UserRegisterForm
     success_url = reverse_lazy('users:register_message')
 
@@ -53,7 +53,7 @@ def email_verification(request, token):
 
 class PasswordRecoveryView(TemplateView):
     model = User
-    template_name = 'recovery_password.html'
+    template_name = 'users/recovery_password.html'
     form_class = PasswordRecoveryForm
     success_url = reverse_lazy('users:recovery_message')
 
