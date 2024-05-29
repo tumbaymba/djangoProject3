@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
-from catalog.forms import ProductForm, VersionForm
+from django.core.exceptions import PermissionDenied
+from catalog.forms import ProductForm, VersionForm, ModeratorForm
 from catalog.models import Product, Version
 
 
@@ -77,7 +78,7 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(UpdateView, LoginRequiredMixin):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:product_list')
@@ -98,6 +99,15 @@ class ProductUpdateView(UpdateView):
             formset.instance = self.object
             formset.save()
         return super().form_valid(form)
+
+    def get_form_class(self):
+        user = self.request.user
+        if user == self.object.owner:
+            return ProductForm
+        if user.has_perm('catalog.set_published') and user.has_perm('catalog.change_description') and user.has_perm(
+                'catalog.change_category'):
+            return ModeratorForm
+        raise PermissionDenied
 
 
 class ProductDeleteView(DeleteView):

@@ -25,8 +25,9 @@ class Product(models.Model):
     product_price = models.IntegerField(verbose_name='Цена')
     created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateField(auto_now=True, verbose_name='Дата последнего изменения')
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Создатель')
+
     is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
+    owner = models.ForeignKey(User, verbose_name="Владелец", null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.product_name}, {self.description}, {self.product_price}'
